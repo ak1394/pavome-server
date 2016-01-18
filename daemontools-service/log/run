@@ -1,0 +1,3 @@
+#!/bin/bash
+ACCOUNT=pavome
+exec setuidgid $ACCOUNT multilog s999999 n100 ./main

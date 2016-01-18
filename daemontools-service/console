@@ -1,0 +1,14 @@
+#!/bin/bash
+COOKIE=s2kkkd6wtedep
+NODENAME=console@pavo.me
+
+if [ -z "$HOME" ]; then
+    export HOME=/home/pavome
+fi
+
+if [ -z "$PAVOME_HOME" ]; then
+    export PAVOME_HOME=/home/pavome/server
+fi
+
+cd $PAVOME_HOME
+exec /opt/erlang/bin/erl -pa $PWD/ebin $PWD/deps/*/ebin -name $NODENAME -setcookie $COOKIE -remsh pavome@pavo.me

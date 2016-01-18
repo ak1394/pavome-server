@@ -1,0 +1,21 @@
+{application, moco,
+ [{description, "Moco server."},
+  {vsn, "0.01"},
+  {modules, [
+    moco,
+    moco_app,
+    moco_sup,
+    moco_db,
+    moco_mobile,
+    moco_user,
+    moco_user_sup,
+    moco_topic,
+    moco_topic_sup,
+    moco_client,
+    moco_client_sup,
+    moco_util
+  ]},
+  {registered, []},
+  {mod, {moco_app, []}},
+  {env, []},
+  {applications, [kernel, stdlib, crypto]}]}.

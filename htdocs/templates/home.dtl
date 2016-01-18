@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>PavoMe</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/theme2.css" />
+        <link rel="stylesheet" type="text/css" href="/static/js/dojo/dojo/resources/dojo.css" />
+        <link rel="stylesheet" type="text/css" href="/static/js/dojo/dijit/themes/tundra/tundra.css" />
+		<link rel="shortcut icon" href="/static/image/favicon.ico"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="/static/js/dojo/dojo/dojo.js" djconfig="parseOnLoad:true"></script>
+<script type="text/javascript" src="/static/js/dojo/dojo/moco.js"></script>
+<script type="text/javascript">
+    dojo.registerModulePath("moco", "/static/js/moco");
+    dojo.require("dojo.parser");
+    dojo.require("dojo.string");
+    dojo.require("dijit.form.ValidationTextBox");
+    dojo.require("dijit.form.Button");
+    dojo.require("dijit.layout.AccordionContainer");
+    dojo.require("moco.Server");
+
+    function sendSms() {
+        if(dijit.byId('mobile').isValid()) {
+            var mobileNumber = dijit.byId('mobile').attr('value').replace(/[\+\-\s]/g, "");
+            dijit.byId('sms').attr('disabled', true);
+            dijit.byId('sms').attr('label', "Sending SMS...");
+            server.sendJadSms(mobileNumber);
+        }
+    }
+
+    function requestPin() {
+        dijit.byId('pin').attr('disabled', true);
+        server.downloadPin().addCallback(function(pin) {
+			dojo.place(dojo.string.substitute('<div>${pin}</div>', {'pin':pin}), 'download_pin', 'only');
+            dojo.byId('pin_request').style.display = 'none';
+            dojo.byId('pin_instructions').style.display = 'block';
+		});			
+    }
+
+    function init() {
+        server = new moco.Server();
+		server.jadToken().addCallback(function(token) {
+			dojo.place(dojo.string.substitute('<p><a href="/download/pavo.jad?token=${token}&nourl=true">Download JAD</a></p><p><a href="/download/pavo.jar?token=${token}">Download JAR</a></p>', {'token':token}), 'downloads', 'only');
+			dojo.place(dojo.string.substitute('<p><a href="/download/pavo.jad?token=${token}">Download</a></p>', {'token':token}), 'downloads-operamini', 'only');
+            /*dojo.connect(dojo.byId('sms'), 'onclick', sendSms);*/
+            dojo.connect(dojo.byId('pin'), 'onclick', requestPin);
+            if(dojo.isOpera) {
+                dijit.byId('download-accordion').selectChild("tab-operamini");
+            }
+		});			
+    }
+
+    dojo.addOnLoad(init);
+</script>
+{% block javascript %}
+{% endblock %}
+    </head>
+    <body class="tundra">
+    <div id="wrapper">
+	    <div id="header">
+            <h3><a href="/">PavoMe: mobile multimedia client for Twitter</a></h3>
+        </div>
+        <div id="page-wrapper">
+            <div id="content-wrapper">
+                <div id="content">
+
+            <div style="font-size: large">
+            <p>Welcome!</p>
+            <p></p>
+            <p>Download links &rarr;</p>
+
+            <p>Once you download it, there are TWO menus: 'Tweet' on the left softbutton and 'Action' (press joystick). To switch screens tilt joystick to left or right. The rest should be easy. If it isn't give me a shout at <a href="http://twitter.com/PavoMe">@PavoMe</a>.</p> 
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p style="font-size: smaller"><b>Nokia S40</b> phones require 'Add and Edit Data' permission to allow video and audio recording.</p>
+            <p style="font-size: smaller">To grant that permission, select PavoMe application, press left softbutton to select 'Options', then go to 'Application Access'  &rarr; 'Data Access' &rarr; 'Add and edit data' and set it to 'Ask every time'.</p>
+            <p></p>
+            <p style="font-size: smaller"><b>Nokia S60</b> phones require 'Read user data', 'Edit user data' permissions as well. See these <a href="http://wiki.forum.nokia.com/index.php/How_to_change_the_Java_API_access_settings_on_S60_phones">instructions</a> to see how to grant these permissions.</p>
+            </div>
+
+                </div>
+            </div>
+	    	<div id="sidebar">
+
+<div style="width: 100%;">
+    <div dojoType="dijit.layout.AccordionContainer" id="download-accordion" style="height: 500px;">
+        <div dojoType="dijit.layout.ContentPane" title="Download" selected="true" style="background: #F5F9E0;">
+            <div id="pin_request">
+                <p>Request a PIN code to download PavoMe.</p>
+                <div style="text-align: center"><button id="pin" dojoType="dijit.form.Button">Request PIN</button></div>
+            </div>
+            <div id="pin_instructions" style="display: none;">
+                <p>Your PIN number is:</p>
+                <p style="font-size: large; text-align: center;"><span id="download_pin">PiN</span></p>
+                <p>Please open <b>m.pavo.me</b> in your phone browser, and enter PIN when requested.</p>
+                <p>Your PIN will expire in 5 minutes</p>
+            </div>
+        </div>
+        <!--div dojoType="dijit.layout.ContentPane" title="Download with SMS" selected="true" style="background: #F5F9E0;">
+            Enter your mobile phone number in international format, e.g.<br/> +123 45 678-9000 
+            <input type="text" id="mobile" size="20" required="true" trim="true" maxLength="24" regExp="^\+[\d\- ]+" dojoType="dijit.form.ValidationTextBox" style="width: 12em"></input>
+            <button id="sms" dojoType="dijit.form.Button">Download</button>
+        </div-->
+        <div dojoType="dijit.layout.ContentPane" title="Download to PC" style="background: #F5F9E0;">
+            <div>
+            <p>If downloading to a PC please make sure to install both JAR and JAD files to your mobile phone.</p>
+            <p>Supplied JAD file contains important authentication token and <span style="color: red;font-weight: bold;">PavoMe won't work if you install JAR file alone</span>.</p>
+            </div>
+        	<div id="downloads">
+        		Generating download links...
+        	</div>
+        </div>
+        <div dojoType="dijit.layout.ContentPane" title="Download with Opera Mini" id="tab-operamini" style="background: #F5F9E0;">
+            <div>
+            <p>If you viewing this on your mobile with Opera Mini you can download PavoMe directly to your phone using the link below.</p>
+            </div>
+        	<div id="downloads-operamini">
+        		Generating download links...
+        	</div>
+        </div>
+    </div>
+</div>
+
+
+            </div>
+	    	<div id="footer"></div>
+        </div>
+    </div>
+{% include "google-analytics.dtl" %}
+{% include "uservoice.dtl" %}
+    </body>
+</html>

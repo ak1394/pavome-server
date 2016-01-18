@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">	
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>bidon:user</title>
+<script type="text/javascript" src="/static/js/dojo/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+<script type="text/javascript" src="/static/js/dojo/dojo/moco.js"></script>
+<script type="text/javascript">
+	dojo.registerModulePath("moco", "/static/js/moco");
+	dojo.require("dojo.parser");
+	dojo.require("moco.Server");
+	dojo.require("moco.Topic");
+	dojo.require("moco.NewPost");
+	dojo.require("moco.UserBadge");
+	dojo.require("moco.UserList");
+	dojo.require("moco.AddContact");
+	dojo.require("dijit.layout.AccordionContainer");
+	dojo.require("dijit.layout.ContentPane");
+</script>
+<link rel="stylesheet" type="text/css" href="/static/js/dojo/dojo/resources/dojo.css"/>
+<link rel="stylesheet" type="text/css" href="/static/js/dojo/dijit/themes/tundra/tundra.css"/>
+<link rel="stylesheet" type="text/css" href="/static/css/moco.css"/>
+<link rel="icon" type="image/png" href="/static/images/favicon.png"/>
+<script type="text/javascript">
+    function init() {
+        mocoserver = new moco.Server();
+		mocoserver.connect().addCallback(function() {
+			mocoserver.contacts(mocoserver.currentUser).addCallback(function() {
+	            new moco.UserBadge({username: mocoserver.username()}, dojo.byId('user-badge'));
+	            dijit.byId('follows').attr('content', new moco.UserList({users: mocoserver.contacts.follows}));
+	            dijit.byId('followers').attr('content', new moco.UserList({users: mocoserver.contacts.followers}));
+	            dijit.byId('accordeon').resize();
+				mocoserver.topic(mocoserver.username(), "updates").addCallback(function(messages) {
+					new moco.Topic({messages: messages}, dojo.byId('topic'));
+					mocoserver.startPolling();
+				});
+			}); 
+		});
+    }
+	
+    dojo.addOnLoad(init);
+	
+    dojo.addOnUnload(function() {
+		mocoserver.stop();
+	});
+</script>
+</head>
+<body class="tundra">
+<div id="container">
+<div id="left">
+	<div id="user-badge"></div>
+	<div dojoType="dijit.layout.AccordionContainer" id="accordeon">
+		<div id="follows" dojoType="dijit.layout.ContentPane" title="Following">
+		</div>
+		<div id="followers" dojoType="dijit.layout.ContentPane" title="Followers">
+		</div>
+	</div>
+</div>
+<div id="center">
+	<div id="topic"></div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+#!/bin/bash
+COOKIE=s2kkkd6wtedep
+NODENAME=pavome@pavo.me
+APPNAME=moco
+ACCOUNT=pavome
+
+if [ -z "$HOME" ]; then
+    export HOME=/home/pavome
+fi
+
+if [ -z "$PAVOME_HOME" ]; then
+    export PAVOME_HOME=/home/pavome/server
+fi
+
+cd $PAVOME_HOME
+if test x$UID = x0; then
+    exec setuidgid $ACCOUNT /opt/erlang/bin/erl -pa $PWD/ebin $PWD/deps/*/ebin -boot start_sasl -s $APPNAME -name $NODENAME -setcookie $COOKIE -noinput -config pavo 2>&1
+else
+    exec /opt/erlang/bin/erl -pa $PWD/ebin $PWD/deps/*/ebin -boot start_sasl -s $APPNAME -name $NODENAME -setcookie $COOKIE -config pavo 
+fi

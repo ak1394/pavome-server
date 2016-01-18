@@ -1,0 +1,264 @@
+body {
+    background: transparent url(/static/image/bg2.gif) repeat-y scroll center top;
+}
+
+#tb1 {
+    margin: 0 auto;
+    border: 0px;
+    border-spacing: 0px;
+    border: 1px solid grey;
+    float:left;
+    margin-left: 0px;
+}
+
+#tb1 td.photo {
+    background-color: #ABAB9A;
+    border: 1px solid #383838;
+    height: 120px;
+    width: 120px;
+}
+
+
+#tb1 td.photo a {
+    height: 120px;
+    width: 120px;
+    background-repeat: no-repeat;
+    display: block;
+    border-style: none;
+}
+
+#wrapper {
+    -moz-background-clip: border;
+    -moz-background-inline-policy: continuous;
+    -moz-background-origin: padding;
+    margin: 0 auto;
+    width: 940px;
+}
+
+#header {
+    background: white;
+    border-bottom: 1px solid #CDCDCD;
+    color: #eaeed3;
+    height: 41px;
+    margin: 0 auto 10px;
+    width: 920px;
+}
+
+#header h3 {
+    padding-top: 10px;
+    padding-left: 40px;
+    margin: 0 0 0 0;
+}
+
+#header h3 a {
+    display: block;
+    font-size: 1.5em;
+    color: black;
+    text-decoration: none;
+}
+
+#page-wrapper {
+    clear: both;
+    margin: 0 auto;
+    width: 922px;
+}
+
+#page-wrapper #content-wrapper {
+    float: left;
+    width: 689px;
+    padding:0 0 7px;
+}
+
+#content {
+    font-size: 1.4em;
+    padding: 10px 15px;
+    width: 659px;
+    background-color: white;
+}
+
+#content a {
+    font-weight: bold;
+}
+
+#user_heading {
+    border-bottom: 1px solid #CDCDCD;
+    font-size:1.4em;
+}
+
+#user_heading a {
+    text-decoration: none;
+}
+
+#picture_view {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    width: 661px;
+}
+
+#picture_view .left, #picture_view .right {
+    position: absolute;
+    top: 40px;
+    width: 104px;
+}
+
+#picture_view .left {
+    left: 0;
+}
+
+#picture_view .right {
+    right: 0;
+}
+
+#picture_view .left a, #picture_view .right a {
+    display: block;
+    height: 48px;
+    margin: 0 auto;
+    width: 48px;
+}
+
+#picture_view .left a {
+    background:transparent url(/static/image/previous.png) repeat scroll 0 0;
+}
+
+#picture_view .right a {
+    background:transparent url(/static/image/next.png) repeat scroll 0 0;
+}
+
+#picture_view #picture {
+    margin: 0 auto;
+    position: relative;
+    width: 450px;
+    min-height: 300px;
+    text-align: center;
+}
+
+#picture_content {
+    min-height: 300px;
+}
+
+#picture_details {
+    clear: both;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    width: 450px;
+    border-top: 1px solid #CDCDCD;
+}
+
+#content_details {
+    padding-top: 5px;
+}
+
+#content_posted {
+    width: 200px;
+    text-align: left;
+    text-transform: uppercase;
+    color: #A6A6A6;
+    font-size: 0.7em;
+}
+
+#content_options {
+    width: 100px;
+    float: right;
+    text-align: right;
+}
+
+#content_options a {
+    text-decoration: none;
+    font-size: 0.8em;
+    color: black;
+}
+
+#sidebar {
+    float: right;
+    font-size: 1.2em;
+    padding: 0 0 0 3px;
+    width: 230px;
+}
+
+#footer {
+    clear: both;
+    height: 20px;
+    width: 660px;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+
+#sidebar h3 {
+    font-size: 1em;
+    text-transform: uppercase;
+    margin-top: 0;
+    text-align: center;
+}
+
+#sidebar ul {
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+    margin-left: 10px;
+    padding: 0;
+}
+
+#sidebar ul li {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-bottom: 1px solid #CDCDCD;
+    line-height: 1em;
+}
+
+
+#sidebar ul li a {
+    text-decoration: none;
+    font-size: 0.8em;
+    color: black;
+    display: block;
+    min-height: 80px;
+}
+
+#sidebar ul li a img.thumbnail {
+    float: left;
+    padding-right: 5px;
+}
+
+#sidebar ul li a img.kind {
+    float: right;
+    opacity:0.7;
+}
+
+#sidebar ul li .details {
+    font-size: 0.6em;
+    text-align: right;
+    color: #A6A6A6;
+}
+
+#sidebar ul li.current {
+    background-color: white;
+}
+
+
+#twitter_div {
+    float: right;
+    width: 260px;
+    border: 1px solid black;
+    padding: 8px;
+    background-color: white;
+    font-family: 'Lucida Grande', sans-serif;
+}
+
+ul#twitter_update_list {
+    padding-left: 5px;
+    list-style-type: none;
+    list-style-position: outside;
+}
+
+#twitter_update_list li {
+    margin-bottom: 10px;
+}

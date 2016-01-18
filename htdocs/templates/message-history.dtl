@@ -1,0 +1,44 @@
+<h3>Previous posts</h3>
+<ul>
+
+{% for message in messages_after %}
+<li>
+    <a href="/{{message.token}}/">
+        <img class="thumbnail" src="/{{message.token}}/thumbnail.jpg"></img>
+        {% ifequal message.attached "video" %} <img class="kind" src="/static/image/video_small.png"></img> {% endifequal %}
+        {% ifequal message.attached "audio" %} <img class="kind" src="/static/image/audio_small.png"></img> {% endifequal %}
+        {% ifequal message.attached "image" %} <img class="kind" src="/static/image/photo_small.png"></img> {% endifequal %}
+        {% ifequal message.attached "undefined" %} <img class="kind" src="/static/image/text_small.png"></img> {% endifequal %}
+        {{message.body}}
+    </a>
+    <div class="details">{{message.posted_rel}}</div>
+</li>
+{% endfor %}
+
+<li class="current">
+    <a href="#">
+        <img class="thumbnail" src="thumbnail.jpg"></img>
+        {% ifequal current.attached "video" %} <img class="kind" src="/static/image/video_small.png"></img> {% endifequal %}
+        {% ifequal current.attached "audio" %} <img class="kind" src="/static/image/audio_small.png"></img> {% endifequal %}
+        {% ifequal current.attached "image" %} <img class="kind" src="/static/image/photo_small.png"></img> {% endifequal %}
+        {% ifequal current.attached "undefined" %} <img class="kind" src="/static/image/text_small.png"></img> {% endifequal %}
+        {{current.body}}
+    </a>
+    <div class="details">{{current.posted_rel}}</div>
+</li>
+
+{% for message in messages_before %}
+<li>
+    <a href="/{{message.token}}/">
+        <img class="thumbnail" src="/{{message.token}}/thumbnail.jpg"></img>
+        {% ifequal message.attached "video" %} <img class="kind" src="/static/image/video_small.png"></img> {% endifequal %}
+        {% ifequal message.attached "audio" %} <img class="kind" src="/static/image/audio_small.png"></img> {% endifequal %}
+        {% ifequal message.attached "image" %} <img class="kind" src="/static/image/photo_small.png"></img> {% endifequal %}
+        {% ifequal message.attached "undefined" %} <img class="kind" src="/static/image/text_small.png"></img> {% endifequal %}
+        {{message.body}}
+    </a>
+    <div class="details">{{message.posted_rel}}</div>
+</li>
+{% endfor %}
+
+</ul>

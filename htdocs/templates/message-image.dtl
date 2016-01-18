@@ -1,0 +1,9 @@
+{% extends "message.dtl" %}
+
+{% block content %}
+<img id="image" src="preview-big.jpg"></img>
+{% endblock %}
+
+{% block content_options %}
+<a href="image.jpg" target="_blank">Original Size</a>
+{% endblock %}

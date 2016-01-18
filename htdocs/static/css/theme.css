@@ -1,0 +1,154 @@
+/*
+       d.green green   l.green  beige   blue
+bright #1F7302 #4DB800 #8CEB23 #DBFFB8 #0056E6
+dark   #3A5C2F #68933D #96BC6C #C1D3B3 #447EB8
+
+*/
+body {
+	background-color: #BFD998;
+}
+
+
+div#wrapper {
+	margin: 0 auto;
+	width: 940px;	
+}
+
+
+
+div#header {
+	height: 80px;
+	background: url(/static/image/banner.png) no-repeat top center;
+	width: 960px;
+	margin: 0 auto;
+}
+
+div#controls {
+	width: 960px;
+	margin: 0 auto;
+	text-align: center;
+	margin-bottom: 8px;
+}
+
+#controls span {
+	position: relative;
+	left: +160px;
+} 
+
+div#container {
+	width: 960px;
+	margin: 0 auto;
+}
+
+img#image {
+	display: block;
+	float:left;
+	border: 8px solid #F5F9E0;
+}
+
+div#comment {
+	float: left;
+	width: 280px;
+    min-height: 800px;
+}
+
+div#video_player_outer {
+	float:left;
+	display: block;
+	width:400px;
+	height: 300px;
+	border: 8px solid #F5F9E0;
+}
+
+div#audio_player_outer {
+	float:left;
+	display: block;
+	width:400px;
+	height: 100px;
+	border: 8px solid #F5F9E0;
+}
+
+#screenshot {
+    float: left;
+    width: 260px;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+
+#twitter_div {
+    float: left;
+    margin-left: 100px;
+    margin-top: 50px;
+    width: 300px;
+    border: 1px solid black;
+    padding: 8px;
+    background-color: #F5F9E0;
+    font-family: 'Lucida Grande', sans-serif;
+}
+
+#twitter_div2 {
+    width: 300px;
+    border: 1px solid black;
+    padding: 8px;
+    background-color: #F5F9E0;
+    font-family: 'Lucida Grande', sans-serif;
+    float: right;
+    margin-top: 100px;
+}
+
+ul#twitter_update_list {
+    list-style-type: none;
+    list-style-position: outside;
+}
+
+#twitter_update_list li {
+    margin-bottom: 10px;
+}
+
+.thumbnail {
+    float: right;
+}
+
+div#message {
+    width: 600px;
+    height: 80px;
+    float: left;
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size: large;
+}
+
+.message-small {
+    min-height:80px;
+    width: 260px;
+    border-bottom: 1px dashed black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.message-current {
+    min-height:80px;
+    width: 260px;
+    border-bottom: 1px dashed black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #F5F9E0;
+}
+
+.message-small a:link {
+    text-decoration: none;
+    color: black;
+}
+
+.message-small a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.message-small a:hover {
+/*    text-decoration: underline; */
+}
+
+.message-small img {
+    border: none;    
+}

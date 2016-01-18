@@ -1,0 +1,6 @@
+#!/bin/bash
+COOKIE=ajdjdjd-dev
+NODENAME=moco@localhost.monimi.net
+APPNAME=moco
+
+exec /opt/erlang/bin/erl -pa $PWD/ebin $PWD/deps/*/ebin -boot start_sasl

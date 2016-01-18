@@ -1,0 +1,7 @@
+[sqlalchemy]
+
+url = mysql://moco:moco@localhost/moco?charset=utf8
+pool_recycle = 3600
+echo = False
+encoding = utf-8
+convert_unicode = True

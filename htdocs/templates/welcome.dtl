@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Welcome to PavoMe!</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/theme2.css" />
+        <link rel="stylesheet" type="text/css" href="/static/js/dojo/dojo/resources/dojo.css" />
+        <link rel="stylesheet" type="text/css" href="/static/js/dojo/dijit/themes/tundra/tundra.css" />
+		<link rel="shortcut icon" href="/static/image/favicon.ico"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="/static/js/dojo/dojo/dojo.js" djconfig="parseOnLoad:true"></script>
+<script type="text/javascript" src="/static/js/dojo/dojo/moco.js"></script>
+<script type="text/javascript">
+    dojo.registerModulePath("moco", "/static/js/moco");
+    dojo.require("dojo.parser");
+    dojo.require("dojo.string");
+    dojo.require("dijit.form.Button");
+    dojo.require("dijit.form.CheckBox");
+    dojo.require("moco.Server");
+
+    function proceed() {
+        if(dijit.byId('follow').attr('value')) {
+            dijit.byId('follow').attr('disabled', true);
+            dijit.byId('proceed').attr('disabled', true);
+            server.followUs().addCallback(function(token) {
+                window.location.href = "/home";
+            });
+        } else {
+            window.location.href = "/home";
+        }
+    }
+
+    function init() {
+        server = new moco.Server();
+        dojo.connect(dojo.byId('proceed'), 'onclick', proceed);
+    }
+    dojo.addOnLoad(init);
+</script>
+{% block javascript %}
+{% endblock %}
+    </head>
+    <body class="tundra">
+    <div id="wrapper">
+	    <div id="header">
+            <h3><a href="/">PavoMe: mobile multimedia client for Twitter</a></h3>
+        </div>
+        <div id="page-wrapper">
+                <div style="background-color: white; padding: 8px;">
+                    <div style="font-size: large">
+                    <div>Welcome to PavoMe &mdash; a mobile multimedia client for Twitter! Your
+                         account has been successfully created and now you can download PavoMe to your phone.</div>
+                    <div>&nbsp</div>
+                    <div>PavoMe is being actively developed, so please follow us to hear about new versions.</div>
+                    <div style="text-align: center; margin-top:16px;">
+                        <button id="proceed" dojoType="dijit.form.Button">Enter</button>
+                        <input id="follow" dojoType="dijit.form.CheckBox" checked="true" type="checkbox"></input>
+                        <label for="follow" style="font-size: medium">Follow us on Twitter</label>
+                    </div>
+                    </div>
+                </div>
+	    	<div id="footer"></div>
+        </div>
+    </div>
+{% include "google-analytics.dtl" %}
+{% include "uservoice.dtl" %}
+    </body>
+</html>

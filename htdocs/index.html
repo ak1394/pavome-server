@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>PavoMe - mobile phone j2me multimedia client for Twitter</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/theme2.css" />
+        <link rel="stylesheet" type="text/css" href="/static/js/dojo/dojo/resources/dojo.css" />
+        <link rel="stylesheet" type="text/css" href="/static/js/dojo/dijit/themes/tundra/tundra.css" />
+		<link rel="shortcut icon" href="/static/image/favicon.ico"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="google-site-verification" content="S9AjsGuv6Ku6Q_X4QI73NitxZbRD6HhFuQCbPDA6unk" />
+<script type="text/javascript" src="/static/js/dojo/dojo/dojo.js" djconfig="parseOnLoad:true"></script>
+<script type="text/javascript" src="/static/js/dojo/dojo/moco-login.js"></script>
+<script type="text/javascript">
+    dojo.registerModulePath("moco", "/static/js/moco");
+    dojo.require("dojo.parser");
+    dojo.require("moco.Server");
+    dojo.require("dijit.form.Button");
+
+    function si() {
+        dijit.byId("sb").attr("disabled", true);
+        dijit.byId("sb1").attr("disabled", true);
+        server.twitterRequestToken().addCallback(function(token) {
+            window.location = "http://twitter.com/oauth/authenticate?oauth_token=" + token;
+        });
+    }
+    
+    function init() {
+        server = new moco.Server();
+        dojo.connect(dojo.byId('sb'), 'onclick', si);
+        dojo.connect(dojo.byId('sb1'), 'onclick', si);
+    }
+
+    function images() {
+        var list = shuffle([
+                "EQAAAAYo3Jg27KSSpRTxxI97/",
+                "EQAAAH42mgT_GaclnNZu4sMm/",
+                "EQAABRQKw4MqiJUSG7gnDtjn/",
+                "EQAABYScflfM4qNAQlccF58c/",
+                "EQAAABAFEUc10CeSGruVN2lT/",
+                "EQAAABEmN6VGA4kotKWOwrCQ/",
+                "EQAAABEuG-FFdOS9nCy04uV7/",
+                "EQAAB1P9RB3XBJko47wJoDji/",
+                "EQAAB1hUVbMOabdGpxvI6hlS/",
+                "EQAAB4RIHd02fr0HRb8HucCA/",
+                "EQAACBA6Ei_sF1yxApkf_WV2/",
+                "EQAACLWcGmBD0aCESLTAqaPp/",
+                "EQAACYhdLibdPkjwD4rJa2Gh/",
+                "EQAAABjJWGgMvAb3dEoo8FL7/",
+                "EQAACeqKXO1Wv2eJtY2tHBj3/",
+                "EQAACeuFvleSTXpEbJgySuuO/",
+                "EQAACpsUDSFrzsuGUerlx899/",
+                "EQAACtDhIhU62XsDr_zs2tWU/",
+                "EQAACvw9_eTPefvLQs192YIA/"]).slice(0, 9);
+
+        var cacheNode = dojo.create("div", {
+                style:{ position:"absolute", top:"-9999px", height:"1px", overflow:"hidden" }
+            }, dojo.body());
+
+        var i=0;
+        dojo.forEach(list, function(image_id) {
+            var tile_id = i;
+            dojo.create("img", { src: "http://pavo.me/" + image_id + "small.jpg", onload:
+                function() {
+                    var tile = dojo.byId('smpl' + tile_id);
+                    if(this.width == 160) {
+                        tile.style.backgroundPosition = "-20px 0px";
+                    } else {
+                        tile.style.backgroundPosition = "0px -20px";
+                    }
+                    tile.href = "http://pavo.me/" + list[tile_id];
+                    tile.style.backgroundImage = 'url(' + this.src + ')';
+                }
+            }, cacheNode);
+            i++;
+        });
+
+    }
+
+    function shuffle(v){
+        for(var j, x, i = v.length; i; j = parseInt(Math.random() * i), x = v[--i], v[i] = v[j], v[j] = x);
+        return v;
+    }
+
+    dojo.addOnLoad(init);
+    dojo.addOnLoad(images);
+</script>
+    </head>
+    <body class="tundra">
+    <div id="wrapper">
+	    <div id="header">
+            <button dojoType="dijit.form.Button" id="sb" style="float:right; margin-top: 8px; margin-right: 20px;">
+                <img src="/static/image/Sign-in-with-Twitter-darker-small.png"></img>
+             </button>
+            <h3><a href="/">PavoMe - multimedia client for Twitter</a></h3>
+
+        </div>
+        <div id="page-wrapper" style="padding-top: 20px;">
+            <div style="width: 870px; height: 500px; margin: 0 auto;">
+                <div style="padding-right: 55px; width: 440px; height: 500px; float:left; font-family: Myriad,Helvetica,Tahoma,Arial,clean,sans-seri; font-size: 1.4em;">
+
+<img src="/static/image/screen.gif" style="float: right; padding: 2px 30px 0px 30px;"/>
+
+<div style="font-weight: bold; font-size: 1.2em; padding-bottom: 0.7em;">What is PavoMe?</div>
+<div style="padding-bottom:0.4em">It's a Twitter client for mobile phones that support Java.</div>
+<div style="font-weight: bold; font-size: 1.2em; padding-top: 0.7em; padding-bottom: 0.7em;">Will it work on my Phone?</div>
+<div style="padding-bottom:0.4em">It should work on most phones that support J2ME, like Nokia and SonyEricsson phones.</div>
+<div style="font-weight: bold; font-size: 1.2em; padding-top: 0.7em; padding-bottom: 0.7em;">Multimedia?</div>
+<div style="padding-bottom:0.4em">You can easily upload photos, videos and even audio recordings from PavoMe. See some 
+photos taken  by our users.</div>
+<div style="font-weight: bold; font-size: 1.2em; padding-top: 0.7em; padding-bottom: 0.7em;">How to get it?</div>
+<div style="padding-bottom:3em">Just<button dojoType="dijit.form.Button" id="sb1"><img src="/static/image/Sign-in-with-Twitter-darker-small.png"></img></button>for download instructions. PavoMe uses OAuth so we won't ask for your Twitter username and password.</div>
+<div style="font-size: small; font-style: italic">PavoMe is beta software. Icons used on the website and in the application come from (or based on) <a href="http://stopdreaming.deviantart.com/art/Albook-extended-811-png-95130593">Albook extended</a> icon set.</div>
+
+                </div>
+                <table id="tb1">
+                <tr><td class="photo"><a href="#" id="smpl0"/></td><td class="photo"><a href="#" id="smpl1"/></td><td class="photo"><a href="#" id="smpl2"/></td></tr>
+                <tr><td class="photo"><a href="#" id="smpl3"/></td><td class="photo"><a href="#" id="smpl4"/></td><td class="photo"><a href="#" id="smpl5"/></td></tr>
+                <tr><td class="photo"><a href="#" id="smpl6"/></td><td class="photo"><a href="#" id="smpl7"/></td><td class="photo"><a href="#" id="smpl8"/></td></tr>
+            </div>
+            </table>
+        </div>
+    </div>
+
+
+<!--
+<script type="text/javascript" src="http://twitter.com/javascripts/blogger.js"></script>
+<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/PavoMe.json?callback=twitterCallback2&amp;count=5"></script>
+-->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-5706209-4");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<script type="text/javascript">
+  var uservoiceJsHost = ("https:" == document.location.protocol) ? "https://uservoice.com" : "http://cdn.uservoice.com";
+  document.write(unescape("%3Cscript src='" + uservoiceJsHost + "/javascripts/widgets/tab.js' type='text/javascript'%3E%3C/script%3E"))
+</script>
+<script type="text/javascript">
+UserVoice.Tab.show({
+  /* required */
+  key: 'pavome',
+  host: 'feedback.pavo.me',
+  forum: '29890',
+  /* optional */
+  alignment: 'left',
+  background_color:'#f00',
+  text_color: 'white',
+  hover_color: '#06C',                                                                                                    
+  lang: 'en'
+})
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,15 @@
+{% extends "message.dtl" %}
+
+{% block javascript %}
+<script type="text/javascript" src="/static/js/swfobject/swfobject.js"></script>
+<script type="text/javascript">
+    swfobject.embedSWF("/static/flash/player.swf", "player", "400", "100", "9.0.0", "/static/js/swfobject/expressInstall.swf",
+                       {'file':window.location.href + 'audio.mp4', 'image':'/static/image/audio.png'});
+</script>
+{% endblock %}
+
+{% block content %}
+<div id="video_player_outer">
+    <p id="player">Player is loading.</p>
+</div>
+{% endblock %}
